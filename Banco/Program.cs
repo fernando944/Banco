@@ -13,8 +13,11 @@ namespace Banco
         public static void Main(string[] args)
         {
 
-            int opsao = 1;
-            while (opsao != 0)
+            ContaBancaria cc = new ContaBancaria("fernado", 1234, 500);
+            ContaBancaria cp = new ContaBancaria(nome: "Larissa", numeroConta: 271312, saldo: 5000);
+
+            int opcao = 1;
+            while (opcao != 0)
             {
                     Console.WriteLine("Oque goatarias de fazer ");
                     Console.WriteLine("1 - Ver saldo Conta Corrente");
@@ -25,23 +28,24 @@ namespace Banco
                 Console.WriteLine("6 - Fazer deposito Conta Poupança");
 
                 Console.WriteLine("0 - Sair");
-                    opsao = int.Parse(Console.ReadLine());
-                ContaBancaria cc = new ContaBancaria(nome: "Fernando", numeroDaConta: 252713, saldo: 5000);
-                ContaBancaria cp = new ContaBancaria(nome: "Larissa", numeroDaConta: 271312, saldo: 5000);
+                    opcao = int.Parse(Console.ReadLine());
 
+ 
 
-
-                switch (opsao)
+                switch (opcao)
                     {
 
                         case 1:
-                        cc.MostrarSaldo();
+                        cc.MostrarSaldo();   
                             break;
                         case 2:
                             {
                                 Console.WriteLine($"Qual valor do saque");
+
                                 double valorsaque = int.Parse(Console.ReadLine());
-                                cc.saque(valorsaque);
+                                double valorpossaque = cc.Saque(valorsaque);
+                                Console.WriteLine($"Saldo atual é {valorpossaque}");
+
                             }
 
                             break;
@@ -49,7 +53,8 @@ namespace Banco
                             {
                                 Console.WriteLine($"Qual valor do Deposito");
                                 double valorDeposito = int.Parse(Console.ReadLine());
-                                cc.deposito(valorDeposito);
+                                cc.Deposito(valorDeposito);
+                            cc.Deposito(0.5);
                         }
                             break;
                     case 4:
@@ -60,8 +65,8 @@ namespace Banco
                         {
                             Console.WriteLine($"Qual valor do saque");
                             double valorsaque = int.Parse(Console.ReadLine());
-                            cc.saque(valorsaque);
-                            Console.WriteLine($"");
+                            cc.Saque(valorsaque);
+                            cc.Saque(5);
                         }
                         break;
 
@@ -69,7 +74,7 @@ namespace Banco
                         {
                             Console.WriteLine($"Qual valor do Deposito");
                             double valorDeposito = int.Parse(Console.ReadLine());
-                            cc.deposito(valorDeposito);
+                            cc.Deposito(valorDeposito);
                         }
                         break;
 

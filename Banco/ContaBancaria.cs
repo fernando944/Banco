@@ -15,17 +15,17 @@ namespace Banco
         private double _taxa;
         private double _bonus;
 
-        protected string Titular
+        public string Titular
         {
             get { return _titular; }
             set { _titular = value; }
         }
-        protected int NumeroDaConta
+        public  int NumeroDaConta
         {
             get { return _numeroDaConta; }
             set { _numeroDaConta = value; }
         }
-        protected double Saldo
+        public  double Saldo
         {
             get { return _saldo; }
             set { _saldo = value; }
@@ -44,19 +44,31 @@ namespace Banco
 
 
 
-        public ContaBancaria(string nome, int numeroDaConta, double saldo)
+        public ContaBancaria(string nome, int numeroConta, double saldo)
         {
-            _titular = Titular;
+            /*_titular = Titular;
             _numeroDaConta = NumeroDaConta;
-            _saldo = Saldo;
+            _saldo = Saldo;*/
+            _titular = nome;
+            _numeroDaConta = numeroConta;
+            _saldo = saldo;
         }
 
-        public double saque(double valor)
+        public double Saque(double valor)
         {
-            return _saldo - (valor + Taxadesaque);
+            if (valor > 0 && valor < Saldo) 
+            {
+                Saldo -= valor;
+                Console.WriteLine($"saque de {valor} realizado");
+            }
+            else
+            {
+                Console.WriteLine("saque não autorizado");
+            }
+            return Saldo;
         }
 
-        public double deposito(double valor)
+        public double Deposito(double valor)
         {
             _saldo += valor;
             if (valor > 0)
@@ -72,7 +84,7 @@ namespace Banco
         public void MostrarSaldo()
         {
             Console.WriteLine("=========================BANCO===FXP=========================\n");
-            Console.WriteLine($"Conta - {NumeroDaConta} que tem como titular {Titular} tem saldo = {Saldo}");
+            Console.WriteLine($"ola {Titular}, sua saldo é {Saldo}");
             Console.WriteLine("=============================================================\n");
         }
 
